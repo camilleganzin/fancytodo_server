@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr" data-framework="angularjs">
+	<head>
+		<meta charset="utf-8">
+		<title>FancyTodo</title>
+		<link rel="stylesheet" href="main.css">
+	</head>
+	<body ng-app="fancytodo">
+
+			<section id="todoapp" ng-controller="toDoController">
+				<header id="header">
+					<form id="todo-form" ng-submit="createTodo()">
+						<input type="text" id="new-todo" placeholder="{{placeholder}}" autofocus autocomplete="off" ng-model="formData.text">
+					</form>
+				</header>
+				<section id="main">
+					<input type="checkbox" id="toggle-all" ng-model="allchecked" ng-click="checkAllTodo(allchecked)">
+					<ul id="todo-list">
+						<li ng-repeat="todo in todos | filter: statusFilter | orderBy: 'completed': true" ng-class="{completed : todo.completed, editing: todo.editing}" ng-dblclick="todo.editing = true">
+							<div class="view">
+								<input class="toggle" type="checkbox" ng-model="todo.completed">
+								<label>{{todo.text}}</label>
+								<button class="destroy" ng-click="deleteTodo(todo._id)"></button>
+							</div>
+							<form>
+								<input class="edit" ng-model="todo.name" ng-blur="editTodo(todo)">
+							</form>
+						</li>
+					</ul>
+				</section>
+				<footer id="footer">
+					<span id="todo-count"><strong>{{remaining}}</strong>
+						<ng-pluralize count="remaining" when="{ one: 'tâche effectuée', other: 'tâches effectuées' }"></ng-pluralize>
+					</span>
+					<ul id="filters">
+						<li><a href="#/" ng-class="{'selected': location.path() == '/'}">Toutes</a></li>
+						<li><a href="#/active" ng-class="{'selected': location.path() == '/active'}">Restante(s)</a></li>
+						<li><a href="#/done" ng-class="{'selected': location.path() == '/done'}">Faite(s)</a></li>
+					</ul>
+				</footer>
+			</section>
+		</script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+		<script src="core.js"></script>
+	</body>
+</html>
