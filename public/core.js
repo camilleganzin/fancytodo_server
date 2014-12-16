@@ -70,4 +70,6 @@ app.controller('toDoController', function($scope, filterFilter, $http, $location
 			todo.completed = allchecked;
 		})
 	}
+	
+	
 });
