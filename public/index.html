@@ -2,6 +2,7 @@
 <html lang="fr" data-framework="angularjs">
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
 		<title>FancyTodo</title>
 		<link rel="stylesheet" href="main.css">
 	</head>
@@ -16,29 +17,29 @@
 				<section id="main">
 					<input type="checkbox" id="toggle-all" ng-model="allchecked" ng-click="checkAllTodo(allchecked)">
 					<ul id="todo-list">
-						<li ng-repeat="todo in todos | filter: statusFilter | orderBy: 'completed': true" ng-class="{completed : todo.completed, editing: todo.editing}" ng-dblclick="todo.editing = true">
+						<li ng-repeat="todo in todos | filter: statusFilter" ng-class="{completed : todo.completed, editing: todo.editing}" ng-dblclick="todo.editing = true">
 							<div class="view">
 								<input class="toggle" type="checkbox" ng-model="todo.completed">
-								<label>{{todo.text}}</label>
+								<label >{{todo.text}}</label>
 								<button class="destroy" ng-click="deleteTodo(todo._id)"></button>
 							</div>
-							<form>
-								<input class="edit" ng-model="todo.name" ng-blur="editTodo(todo)">
-							</form>
 						</li>
 					</ul>
 				</section>
 				<footer id="footer">
-					<span id="todo-count"><strong>{{remaining}}</strong>
-						<ng-pluralize count="remaining" when="{ one: 'tâche effectuée', other: 'tâches effectuées' }"></ng-pluralize>
+					<span id="todo-count">
+						<ng-pluralize count="remaining" when="{ '0': 'Aucune tâche effectuée', one: ' 1 tâche effectuée', other: '{{remaining}} tâches effectuées' }"></ng-pluralize>
 					</span>
 					<ul id="filters">
 						<li><a href="#/" ng-class="{'selected': location.path() == '/'}">Toutes</a></li>
-						<li><a href="#/active" ng-class="{'selected': location.path() == '/active'}">Restante(s)</a></li>
 						<li><a href="#/done" ng-class="{'selected': location.path() == '/done'}">Faite(s)</a></li>
 					</ul>
+					<div> 
 				</footer>
 			</section>
+		<footer class="mainfooter">
+			Cliquer une première fois sur le "tick" de la tâche souhaitée, puis une seconde fois pour la marquer comme effectuée.
+		</footer>
 		</script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
 		<script src="core.js"></script>

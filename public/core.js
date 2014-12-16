@@ -26,14 +26,13 @@ app.controller('toDoController', function($scope, filterFilter, $http, $location
 	
 	$scope.$watch('todos', function(){
 		$scope.remaining = filterFilter($scope.todos, { completed: true }).length;
-		$scope.allchecked = !$scope.remaining;
+		//$scope.allchecked = !$scope.remaining;
 	}, true)
 	
 	if($location.path() == ''){ $location.path('/')}
 	$scope.location = $location;
 	$scope.$watch('location.path()', function(path){
 		$scope.statusFilter = 
-		(path == '/active') ? {completed : false} : 
 		(path == '/done') ? {completed : true} :
 		null;
 	});
@@ -49,7 +48,11 @@ app.controller('toDoController', function($scope, filterFilter, $http, $location
 	};
 	
 	$scope.createTodo = function(){
+	
+	
 		$http.post('/api/todos', $scope.formData)
+		
+			
 			.success(function(data) {
 				$scope.formData = {}; // clear the form so our user is ready to enter another
 				$scope.todos = data;
@@ -60,9 +63,7 @@ app.controller('toDoController', function($scope, filterFilter, $http, $location
 			});
 	}
 	
-	$scope.editTodo = function(todo){
-		todo.editing = false;
-	}
+
 	
 	$scope.checkAllTodo = function(allchecked){
 		$scope.todos.forEach(function(todo){

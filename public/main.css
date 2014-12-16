@@ -28,7 +28,8 @@ body {
 	line-height: 1.4em;
 	background: #A9C1D9 url('img/retina_wood.png');
 	color: #607890;
-	width: 550px;
+	width: 100%;
+	height: 100%;
 	margin: 0 auto;
 	-webkit-font-smoothing: antialiased;
 	-moz-font-smoothing: antialiased;
@@ -43,9 +44,8 @@ input[type="checkbox"] {
 }
 
 #todoapp {
-	background: #fff;
-	background: rgba(255, 255, 255, 0.9);
-	margin: 130px 0 40px 0;
+	background: #A9C1D9 url('img/retina_wood.png');
+	margin: 30px 30px 40px 30px;
 	border: 1px solid #ccc;
 	position: relative;
 	border-top-left-radius: 2px;
@@ -75,30 +75,15 @@ input[type="checkbox"] {
 }
 
 #header {
-	padding-top: 15px;
 	border-radius: inherit;
-}
-
-#header:before {
-	content: '';
-	position: absolute;
-	top: 0;
-	right: 0;
-	left: 0;
-	height: 15px;
-	z-index: 2;
 	background: #CACCB6;
-	background: rgba(142,158,130, 0.8));
-	border-top-left-radius: 1px;
-	border-top-right-radius: 1px;
 }
 
-#new-todo,
-.edit {
+#new-todo {
 	position: relative;
 	margin: 0;
 	width: 100%;
-	font-size: 24px;
+	font-size: 15px;
 	font-family: inherit;
 	line-height: 1.4em;
 	border: 0;
@@ -116,9 +101,6 @@ input[type="checkbox"] {
 	-ms-font-smoothing: antialiased;
 	-o-font-smoothing: antialiased;
 	font-smoothing: antialiased;
-}
-
-#new-todo {
 	padding: 16px 16px 16px 60px;
 	border: none;
 	background: rgba(0, 0, 0, 0.02);
@@ -148,7 +130,7 @@ label[for='toggle-all'] {
 
 #toggle-all:before {
 	content: '»';
-	font-size: 28px;
+	font-size: 40px;
 	color: #d9d9d9;
 	padding: 0 25px 7px;
 }
@@ -208,11 +190,16 @@ label[for='toggle-all'] {
 
 #todo-list li .toggle:after {
 	content: '✓';
-	/* 40 + a couple of pixels visual adjustment */
 	line-height: 43px;
-	font-size: 20px;
+	font-size: 40px;
 	color: #d9d9d9;
 	text-shadow: 0 -1px 0 #bfbfbf;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	#todo-list li .toggle:after {
+		font-size: 25px;
+	}
 }
 
 #todo-list li .toggle:checked:after {
@@ -313,8 +300,7 @@ label[for='toggle-all'] {
 	padding: 0;
 	list-style: none;
 	position: absolute;
-	right: 0;
-	left: 0;
+	right: 3%;
 }
 
 #filters li {
@@ -348,10 +334,17 @@ label[for='toggle-all'] {
 	box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.3);
 }
 
-/*
-	Hack to remove background from Mobile Safari.
-	Can't use it globally since it destroys checkboxes in Firefox and Opera
-*/
+.mainfooter {
+	text-align: center;
+	margin: 30px 30px 40px 30px;
+}
+
+@media screen and (min-width: 600px) {
+	.mainfooter {
+		display: none;
+	}
+}
+
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
 	#toggle-all,
@@ -365,7 +358,7 @@ label[for='toggle-all'] {
 
 	#toggle-all {
 		top: -56px;
-		left: -15px;
+		left: -8px;
 		width: 65px;
 		height: 41px;
 		-webkit-transform: rotate(90deg);
@@ -373,8 +366,11 @@ label[for='toggle-all'] {
 		-webkit-appearance: none;
 		appearance: none;
 	}
+	
 }
 
 .hidden {
 	display: none;
 }
+
+
